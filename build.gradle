@@ -1,16 +1,24 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
 }
 
 group 'fr.univ_amu'
 version '1.0-SNAPSHOT'
+
+
+
+checkstyle {
+    toolVersion = '10.3.4'
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    checkstyle "com.puppycrawl.tools:checkstyle:10.3.4"
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.9.0',
             'org.assertj:assertj-core:3.23.1')
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
