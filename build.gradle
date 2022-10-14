@@ -8,8 +8,6 @@ plugins {
 group 'fr.univ_amu'
 version '1.0-SNAPSHOT'
 
-
-
 checkstyle {
     toolVersion = '10.3.4'
 }
@@ -19,13 +17,10 @@ repositories {
 }
 
 dependencies {
-    checkstyle "com.puppycrawl.tools:checkstyle:10.3.4"
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.9.0',
             'org.assertj:assertj-core:3.23.1')
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
-
-
 
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
@@ -33,8 +28,6 @@ test {
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
-
-
 
 test {
     useJUnitPlatform()
