@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 /**
  * A template class for testing with assertJ.
  */
-public class TestMyClass {
+class TestMyClass {
 
   @Test
   void testTrue() {

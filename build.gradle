@@ -3,6 +3,8 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'jacoco'
+    id 'pmd'
+    id "com.github.spotbugs" version "5.0.12"
 }
 
 group 'fr.univ_amu'
@@ -19,7 +21,10 @@ repositories {
 dependencies {
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.9.0',
             'org.assertj:assertj-core:3.23.1')
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.12.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+    implementation 'org.apache.logging.log4j:log4j-api:2.19.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.19.0'
 }
 
 test {
@@ -34,7 +39,7 @@ test {
 }
 
 application {
-    mainClass = 'sample.MyJFrame'
+    mainClass = 'sample.MyJavaFrame'
 }
 
 tasks.named('jar') {
@@ -45,6 +50,34 @@ tasks.named('jar') {
     }
 }
 
+spotbugs {
+    reportLevel = 'high'
+    effort = 'max'
+}
 
 
+spotbugsMain {
+    reports {
+        html {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
 
+spotbugsTest {
+    reports {
+        html {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/test/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+
+pmd {
+    consoleOutput = true
+    sourceSets = [sourceSets.main]
+    ruleSets = ["category/java/errorprone.xml", "category/java/bestpractices.xml"]
+}
