@@ -18,15 +18,16 @@ stages:
 build:
   stage: build
   script: ./gradlew jar
+  artifacts:
+    paths:
+      - build/lib/*.jar
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
     paths:
       - build
       - .gradle
-    artifacts:
-      paths:
-        - build/lib/*.jar
+
 
 test:
   stage: test
