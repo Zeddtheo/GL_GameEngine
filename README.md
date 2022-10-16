@@ -17,6 +17,8 @@ Les commandes gradle les plus utiles :
 
 Le fichier `build.gradle` contient la configuration du projet avec notamment la définition de la classe contenant la méthode `main` à exécuter pour l'application.
 
+Le projet est configuré (via le fichier `.gitlab-ci.yml`) pour produire un jar et lancer les tests sur le serveur à chaque *push*.
+
 ## Copyrights
 
 Image provenant de [Larry Ewing](lewing@isc.tamu.edu) and The GIMP
