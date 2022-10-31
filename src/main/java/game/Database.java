@@ -1,6 +1,7 @@
 package game;
 
 import java.io.*;
+import java.util.Vector;
 
 /***
  * @author Jinhua
@@ -14,7 +15,13 @@ public class Database {
     private static int playerScore;
     //private static FileWriter fw = null;
     private static BufferedWriter bw  = null;
+    private static BufferedReader br = null;
     private static String dataFile = "src/record.txt";
+    private static Vector<Enemy> enemies = null;
+    private static Vector<Node> nodes = new Vector<>();
+    public static void setEnemy(Vector<Enemy> enemies) {
+        Database.enemies = enemies;
+    }
 
     public static int getPlayerScore() {
         return playerScore;
@@ -30,10 +37,22 @@ public class Database {
     public static void updateScore(){
         Database.playerScore++;
     }
-    public static void keepScore() throws IOException {
+
+    /**
+     * Save player's score and position and NPC's position when exits.
+     * @throws IOException
+     */
+    public static void saveData() throws IOException {
         try{
             bw = new BufferedWriter(new FileWriter(dataFile));
-            bw.write(playerScore);
+            bw.write(playerScore+"\r\n");
+            for(int i =0;i< enemies.size();i++){
+                Enemy enemy = enemies.get(i);
+                if(enemy.isAlive){
+                    String record = enemy.getX()+" "+enemy.getY();
+                    bw.write(record+"\r\n");
+                }
+            }
         }catch (IOException e){
             e.printStackTrace();
         }finally {
@@ -42,7 +61,30 @@ public class Database {
             }
         }
     }
-    void reload(){
 
+    /**
+     * Reload enemy information when game starts.
+     *
+     * @return
+     * @throws IOException
+     */
+    public static Vector<Node> reload() throws IOException {
+        try {
+            br = new BufferedReader(new FileReader(dataFile));
+            nbEnemy =Integer.parseInt(br.readLine());
+            String line = "";
+            while((line = br.readLine())!=null){
+                String[] xyd = line.split(" ");
+                Node node = new Node(Integer.parseInt(xyd[0]),Integer.parseInt(xyd[1]),Integer.parseInt(xyd[2]));
+                nodes.add(node);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(br!=null){
+                br.close();
+            }
+        }
+        return nodes;
     }
 }
