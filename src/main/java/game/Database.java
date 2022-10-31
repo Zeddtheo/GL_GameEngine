@@ -71,7 +71,7 @@ public class Database {
     public static Vector<Node> reload() throws IOException {
         try {
             br = new BufferedReader(new FileReader(dataFile));
-            nbEnemy =Integer.parseInt(br.readLine());
+            Enemy.nbEnemy = Integer.parseInt(br.readLine());
             String line = "";
             while((line = br.readLine())!=null){
                 String[] xyd = line.split(" ");
