@@ -38,6 +38,11 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
         switch(e.getKeyCode()) {
             case KeyEvent.VK_UP:
                 p.setDy(-1);
@@ -51,11 +56,10 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
             case KeyEvent.VK_RIGHT:
                 p.setDx(1);
                 break;
+            case KeyEvent.VK_R:
+                p.setDx(0);
+                p.setDy(0);
+                break;
         }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
     }
 }
