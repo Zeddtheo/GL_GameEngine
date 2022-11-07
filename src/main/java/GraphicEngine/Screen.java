@@ -1,5 +1,5 @@
 package GraphicEngine;
-
+import PhysicEngine.Collider.BoxCollider;
 import PhysicEngine.Player;
 
 import javax.swing.*;
@@ -10,7 +10,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Screen extends JPanel implements ActionListener, KeyListener {
-
     Timer t = new Timer(10, this);
     Player p = new Player(10,10,10,10,0,0);
     Player p2 = new Player(20,20,10,10,0,0);
@@ -23,7 +22,12 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         p.move();
+        BoxCollider b1 = new BoxCollider(p.x,p.y,p.width);
         p2.move();
+        BoxCollider b2 = new BoxCollider(p2.x,p2.y,p2.width);
+        if(b1.checkCollision(b2)){
+            System.out.println("hit!");
+        }
         repaint();
     }
 
