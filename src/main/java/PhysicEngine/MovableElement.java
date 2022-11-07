@@ -1,13 +1,10 @@
-package sample.newPhysicEngine;
+package PhysicEngine;
 
-import sample.PhysicEngine.Position;
-
-
-public abstract class MoovableElement {
+public abstract class MovableElement {
     private Position coordinate;
     protected HitBox hitBox;
 
-    public MoovableElement(Position coordinate) {
+    public MovableElement(Position coordinate) {
         this.coordinate = coordinate;
     }
 

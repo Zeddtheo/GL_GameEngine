@@ -2,8 +2,6 @@ package PhysicEngine;
 
 public class Orientation {
 
-
-
     private boolean up;
     private boolean down;
     private boolean left;

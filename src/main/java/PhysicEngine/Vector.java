@@ -1,4 +1,4 @@
-package sample.newPhysicEngine;
+package PhysicEngine;
 
 public class Vector {
 
