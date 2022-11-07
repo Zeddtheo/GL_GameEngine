@@ -1,6 +1,6 @@
 package sample;
 
-import game.Database;
+import Game.Database;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
