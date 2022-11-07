@@ -1,4 +1,4 @@
-package game;
+package Game;
 
 public class Enemy {
     public static boolean isAlive;

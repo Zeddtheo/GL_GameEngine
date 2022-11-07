@@ -1,4 +1,4 @@
-package game;
+package Game;
 
 /**
  * Save Enemies' information in order to reload.

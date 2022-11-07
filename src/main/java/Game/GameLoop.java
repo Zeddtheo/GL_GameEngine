@@ -1,4 +1,4 @@
-package game;
+package Game;
 
 public class GameLoop {
     public void execute(){

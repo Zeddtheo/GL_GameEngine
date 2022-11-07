@@ -1,6 +1,6 @@
 package GraphicEngine;
 
-import sample.PhysicEngine.Player;
+import PhysicEngine.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,22 +13,24 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
 
     Timer t = new Timer(10, this);
     Player p = new Player(10,10,10,10,0,0);
+    Player p2 = new Player(20,20,10,10,0,0);
     public Screen(){
         addKeyListener(this);
         setFocusable(true);
-
         t.start();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         p.move();
+        p2.move();
         repaint();
     }
 
     public void paint(Graphics g){
         g.clearRect(0,0, getWidth(),getHeight());
         p.draw(g);
+        p2.draw(g);
     }
 
     @Override
@@ -59,6 +61,22 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
             case KeyEvent.VK_R:
                 p.setDx(0);
                 p.setDy(0);
+                break;
+            case KeyEvent.VK_W:
+                p2.setDy(-1);
+                break;
+            case KeyEvent.VK_S:
+                p2.setDy(1);
+                break;
+            case KeyEvent.VK_A:
+                p2.setDx(-1);
+                break;
+            case KeyEvent.VK_D:
+                p2.setDx(1);
+                break;
+            case KeyEvent.VK_T:
+                p2.setDx(0);
+                p2.setDy(0);
                 break;
         }
     }

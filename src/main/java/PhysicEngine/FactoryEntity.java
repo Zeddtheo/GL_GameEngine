@@ -1,4 +1,4 @@
-package sample.PhysicEngine;
+package PhysicEngine;
 
 public abstract class FactoryEntity {
     private Position pos;

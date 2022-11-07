@@ -1,4 +1,4 @@
-package sample.PhysicEngine;
+package PhysicEngine;
 
 import java.awt.*;
 
