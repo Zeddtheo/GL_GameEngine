@@ -22,7 +22,7 @@ public class MyJavaFrame extends JFrame {
 
 
   public MyJavaFrame() {
-    setTitle("Main window");
+    setTitle("src.Main window");
     setSize(400, 400);
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

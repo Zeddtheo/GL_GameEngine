@@ -1,26 +1,32 @@
 package PhysicEngine;
 
+import java.awt.*;
+
 public class HitBox {
 
     private Position corner;
     private final int height; //hauteur
 
-    private final int lenght; //largeur
+    private final int width; //largeur
 
 
     /**
      * Prend la coordonnée du centre de l'element et la longueur souhaité pour creer la hitbox
      * @param coordinate le centre de l'element
-     * @param lenght la longueur de l'element
+     * @param width la longueur de l'element
      */
-    public HitBox(Position coordinate, int lenght, int height) {
+    public HitBox(Position coordinate, int width, int height) {
         setCornerLeft(coordinate);
-        this.lenght = lenght;
+        this.width = width;
         this.height = height;
     }
 
     private void setCornerLeft(Position position){
-        corner = new Position(position.getPosX() - lenght/2, position.getPosY() - height/2);
+        corner = new Position(position.getPosX() - width /2, position.getPosY() - height/2);
+    }
+
+    public Rectangle getRectangle(){
+        return new Rectangle((int) corner.getPosX(), (int) corner.getPosY(), width, height );
     }
 
     /**
@@ -39,8 +45,8 @@ public class HitBox {
         return height;
     }
 
-    public int getLenght() {
-        return lenght;
+    public int getWidth() {
+        return width;
     }
 
     public Position getDownLeftCorner(){
@@ -48,10 +54,10 @@ public class HitBox {
     }
 
     public Position getDownRightCorner(){
-        return new Position(corner.getPosX() + lenght, corner.getPosY() + height);
+        return new Position(corner.getPosX() + width, corner.getPosY() + height);
     }
 
     public Position getUpRightCorner(){
-        return new Position(corner.getPosX() + lenght, corner.getPosY());
+        return new Position(corner.getPosX() + width, corner.getPosY());
     }
 }
