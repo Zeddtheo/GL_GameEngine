@@ -34,7 +34,7 @@ public class Screen extends JPanel implements ActionListener, KeyListener {
     public void paint(Graphics g){
         g.clearRect(0,0, getWidth(),getHeight());
         p.draw(g);
-        p2.draw(g);
+        //p2.draw(g);
     }
 
     @Override
