@@ -1,11 +1,9 @@
 package InputEngine;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Keyboard extends Input implements  KeyListener, ActionListener {
+public class Keyboard extends Input implements KeyListener {
 
     public Keyboard() {
     }
@@ -50,10 +48,5 @@ public class Keyboard extends Input implements  KeyListener, ActionListener {
                 super.setGoRight(false);
                 break;
         }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
     }
 }

@@ -29,66 +29,26 @@ public abstract class MovableElement {
     }
 
     public void setVitesse(boolean goUp, boolean goDown, boolean goRight, boolean goLeft ){
-        //on compte combien il y a d'input 4 : on bouge pas 3 : on prend celui du millieu
-        int countInput = 0;
-        if (goUp) {
-            countInput++;
-        }
-        if (goDown) {
-            countInput++;
+        if ((goUp && goDown) || (goLeft && goRight)) return;
 
+        int x = 0, y = 0;
+        if (goUp){
+            y-=1;
         }
-        if (goRight) {
-            countInput++;
-
+        if (goDown){
+            y+=1;
         }
-        if (goLeft) {
-            countInput++;
+        if (goLeft){
+            x-=1;
         }
-
-        if (countInput == 0  || countInput == 4) {       //aucune touche press ou toutes les touches presse
-            V = new Vector(0,0);
-            return;
-        }
-        if (countInput == 3){
-            if (goUp && goDown && goLeft){ //go left
-                V = new Vector(-vitesse, 0);
-            }
-            if (goUp && goDown && goRight){ //go right
-                V = new Vector(vitesse, 0);
-            }
-            if (goUp && goRight && goLeft){ //go up
-                V = new Vector(0, -vitesse);
-            }
-            if (goDown && goRight && goLeft){ //go down
-                V = new Vector(0, vitesse);
-            }
+        if (goRight){
+            x+=1;
         }
 
-        if (countInput == 2){
-            if (goUp && goRight){
-                V = new Vector(2*vitesse/3 ,-2*vitesse/3  );
-            }
-            if (goDown && goRight){
-                V = new Vector(2*vitesse/3 , 2*vitesse/3 );
-            }
-            if (goUp && goLeft){
-                V =new Vector(-2*vitesse/3 ,-2*vitesse/3 );
-            }
-            if (goDown && goLeft){
-                V = new Vector(-2*vitesse/3 , 2*vitesse/3 );
-            }
-
-            return ;
-        }
-
-        if (countInput == 1){
-            if (goRight) V = new Vector(vitesse, 0);
-            if (goLeft) V = new Vector(-vitesse, 0);
-            if (goDown) V = new Vector(0, vitesse);
-            if (goUp) V = new Vector(0, -vitesse);
-        }
-
+        double l = Math.sqrt((double) x * x + y * y);
+        int x1 = (int) ((double) vitesse * x / l);
+        int y1 = (int) ((double) vitesse * y / l);
+        V = new Vector(x1, y1);
 
     }
 

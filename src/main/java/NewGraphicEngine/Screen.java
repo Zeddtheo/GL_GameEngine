@@ -3,19 +3,15 @@ package NewGraphicEngine;
 import Game.CoreKernel;
 import InputEngine.Keyboard;
 
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 public class Screen extends JPanel {
 
     CoreKernel coreKernel;
     Element player = new Element(new ImageIcon("Player.png"));
 
-    Timer t ;
     public Screen(Keyboard keyboard, CoreKernel coreKernel){
-        t = new Timer(10, keyboard);
 
         addKeyListener(keyboard);
         setFocusable(true);
@@ -28,7 +24,6 @@ public class Screen extends JPanel {
 
         player.setVisible(true);
         add(player);
-        t.start();
     }
 
     @Override
