@@ -6,7 +6,7 @@ public class InputTreatment {
 
     Input input;
 
-    long vitesse = 1;
+    long vitesse = 2;
 
     public InputTreatment(Input input) {
         this.input = input;

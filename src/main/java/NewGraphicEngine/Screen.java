@@ -42,6 +42,4 @@ public class Screen extends JPanel {
 
     }
 
-
-
 }
