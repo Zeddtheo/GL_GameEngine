@@ -34,7 +34,7 @@ public class Screen extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(getGraphics());
-        player.paintComponent(getGraphics());
+        //player.paintComponent(getGraphics());
     }
 
     public void refresh(CoreKernel coreKernel){
