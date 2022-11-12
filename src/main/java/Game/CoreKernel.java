@@ -23,10 +23,14 @@ public class CoreKernel {
         while (true){
             long start = System.currentTimeMillis();
 
+
             //récupération des inputs
-            //application des mouvements sur les objets
+            player.setVitesse(inputTreatment.getInput());
+
             //analyse du jeu pour voir si les mouvement on eu des consequences
-            PhysicEngine.move(player, inputTreatment.getVector());
+            //application des mouvements sur les objets
+            PhysicEngine.move(player);
+
 
             frame.refresh();
 

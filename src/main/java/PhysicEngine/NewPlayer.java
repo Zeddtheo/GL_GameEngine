@@ -7,6 +7,7 @@ public class NewPlayer extends MovableElement {
 
     public NewPlayer(Position coordinate) {
         super(coordinate);
+        super.vitesse = 3;
         super.hitBox = new HitBox(coordinate, lenght, lenght);
     }
 

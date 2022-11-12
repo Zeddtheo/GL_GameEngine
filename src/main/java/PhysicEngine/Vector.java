@@ -17,4 +17,6 @@ public class Vector {
     public long getVy() {
         return Vy;
     }
+
+
 }

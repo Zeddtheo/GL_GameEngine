@@ -6,10 +6,9 @@ public class PhysicEngine {
     /**
      * faire bouger les elements
      * @param movableElement l'element que l'on veut faire bouger
-     * @param vector le vecteur qu'on doit lui appliquer pour le mouvement
      */
-    public static void move(MovableElement movableElement, Vector vector){
-        movableElement.setCoordinate(new Position(movableElement.getCoordinate().getPosX() + vector.getVx(),movableElement.getCoordinate().getPosY() + vector.getVy()));
+    public static void move(MovableElement movableElement){
+        movableElement.applyMovement();
     }
 
     /**
