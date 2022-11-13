@@ -22,7 +22,7 @@ public class HitBox {
     }
 
     private void setCornerLeft(Position position){
-        corner = new Position(position.getPosX() - width /2, position.getPosY() - height/2);
+        corner = position;
     }
 
     public Rectangle getRectangle(){

@@ -2,28 +2,33 @@ package NewGraphicEngine;
 
 import Game.CoreKernel;
 import InputEngine.Keyboard;
+import PhysicEngine.Entity;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Screen extends JPanel {
 
     CoreKernel coreKernel;
-    Element player = new Element(new ImageIcon("Player.png"));
 
+    List<Element> elements = new ArrayList<>();
     public Screen(Keyboard keyboard, CoreKernel coreKernel){
+
+        for (Entity entity : coreKernel.entities) {
+            Element element = new Element(entity);
+            elements.add(element);
+            element.setBounds(element.entity.collision());
+            element.setVisible(true);
+            add(element);
+        }
 
         addKeyListener(keyboard);
         setFocusable(true);
         this.coreKernel = coreKernel;
         setVisible(true);
 
-
-        player.setVisible(true);
-        player.setBounds(coreKernel.player.getHitBox().getRectangle());
-
-        player.setVisible(true);
-        add(player);
     }
 
     @Override
@@ -33,7 +38,10 @@ public class Screen extends JPanel {
     }
 
     public void refresh(CoreKernel coreKernel){
-        player.setBounds(coreKernel.player.getHitBox().getRectangle());
+        for (Element element : elements) {
+            element.setBounds(element.entity.collision());
+            element.repaint();
+        }
 
     }
 

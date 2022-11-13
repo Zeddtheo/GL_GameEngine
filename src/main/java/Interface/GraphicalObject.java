@@ -1,8 +1,8 @@
 package Interface;
 
-import java.awt.image.BufferedImage;
+import javax.swing.*;
 
 public interface GraphicalObject {
-    BufferedImage getImage();
-    void setImage(BufferedImage image);
+    ImageIcon getImage();
+    void setImage(ImageIcon image);
 }

@@ -1,14 +1,19 @@
 package PhysicEngine;
 
 
+import java.util.List;
+
 public class PhysicEngine {
 
     /**
      * faire bouger les elements
-     * @param movableElement l'element que l'on veut faire bouger
+     * @param movableEntity l'element que l'on veut faire bouger
      */
-    public static void move(MovableElement movableElement){
-        movableElement.applyMovement();
+    public static void move(MovableEntity movableEntity, List<Entity> collisions){
+        for (Entity collision : collisions) {
+            if (movableEntity.getNextStep().intersects(collision.collision())) return;
+        }
+        movableEntity.applyMovement();
     }
 
     /**
