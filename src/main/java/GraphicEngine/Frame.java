@@ -1,16 +1,22 @@
 package GraphicEngine;
 
+import Game.CoreKernel;
+import InputEngine.Keyboard;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Frame extends JFrame {
 
-    public Frame(){
+    Screen screen;
+
+    CoreKernel coreKernel;
+    public Frame(CoreKernel coreKernel){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Player Move");
         setSize(400,400);
         setResizable(false);
-
+        this.coreKernel = coreKernel;
         init();
     }
 
@@ -18,12 +24,17 @@ public class Frame extends JFrame {
 
         setLayout(new GridLayout(1,1,0,0));
 
-        Screen s = new Screen();
+        screen = new Screen((Keyboard) coreKernel.inputTreatment.getInput(), coreKernel);
 
-        add(s);
+        add(screen);
 
         setVisible(true);
+
+        screen.paintComponent(getGraphics());
     }
 
+    public void refresh(){
+        screen.refresh(coreKernel);
+    }
 
 }
