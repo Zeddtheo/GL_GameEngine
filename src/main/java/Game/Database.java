@@ -17,11 +17,7 @@ public class Database {
     private static BufferedWriter bw  = null;
     private static BufferedReader br = null;
     private static String dataFile = "src/record.txt";
-    private static Vector<Enemy> enemies = null;
     private static Vector<Node> nodes = new Vector<>();
-    public static void setEnemy(Vector<Enemy> enemies) {
-        Database.enemies = enemies;
-    }
 
     public static int getPlayerScore() {
         return playerScore;
@@ -46,13 +42,6 @@ public class Database {
         try{
             bw = new BufferedWriter(new FileWriter(dataFile));
             bw.write(playerScore+"\r\n");
-            for(int i =0;i< enemies.size();i++){
-                Enemy enemy = enemies.get(i);
-                if(enemy.isAlive){
-                    String record = enemy.getX()+" "+enemy.getY();
-                    bw.write(record+"\r\n");
-                }
-            }
         }catch (IOException e){
             e.printStackTrace();
         }finally {
@@ -71,7 +60,6 @@ public class Database {
     public static Vector<Node> reload() throws IOException {
         try {
             br = new BufferedReader(new FileReader(dataFile));
-            Enemy.nbEnemy = Integer.parseInt(br.readLine());
             String line = "";
             while((line = br.readLine())!=null){
                 String[] xyd = line.split(" ");

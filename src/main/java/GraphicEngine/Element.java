@@ -1,4 +1,4 @@
-package NewGraphicEngine;
+package GraphicEngine;
 
 import PhysicEngine.Entity;
 
