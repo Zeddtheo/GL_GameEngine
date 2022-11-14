@@ -21,9 +21,9 @@ public class CoreKernel {
         init();
     }
 
-    public List<Entity> entities; // liste des entités dans la zone de jeu
-    public List<MovableEntity> movableEntities; //  liste des entités qui bougent
-    public List<Entity> testWalls; // liste des murs ou des obstacles
+    public List<Entity> entities = new ArrayList<>(); // liste des entités dans la zone de jeu
+    public List<MovableEntity> movableEntities = new ArrayList<>(); //  liste des entités qui bougent
+    public List<Entity> testWalls = new ArrayList<>(); // liste des murs ou des obstacles
 
     void init() {
         // il suffit d'ajouter des objets dans les listes ci dessus pour ses affichages et aussi ses mouvements
