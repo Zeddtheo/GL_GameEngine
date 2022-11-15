@@ -2,6 +2,7 @@ package Game;
 
 import PhysicEngine.HitBox;
 import PhysicEngine.MovableEntity;
+import PhysicEngine.Orientation;
 
 import javax.swing.*;
 
@@ -10,7 +11,7 @@ public class MyCharacter extends MovableEntity {
 
     public MyCharacter(HitBox hitBox) {
         super(hitBox);
-        image = new ImageIcon("Player.png");
+        image = new ImageIcon("Head.png");
     }
 
     @Override
@@ -22,4 +23,6 @@ public class MyCharacter extends MovableEntity {
     public void setImage(ImageIcon image) {
         this.image = image;
     }
+
+
 }
