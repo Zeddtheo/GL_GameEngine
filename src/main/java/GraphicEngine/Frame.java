@@ -1,6 +1,7 @@
 package GraphicEngine;
 
 import Game.CoreKernel;
+import Game.MenuPanel;
 import InputEngine.Keyboard;
 
 import javax.swing.*;
@@ -12,6 +13,8 @@ public class Frame extends JFrame {
 
     CoreKernel coreKernel;
     public Frame(CoreKernel coreKernel){
+        //MenuPanel panel = new MenuPanel(1200,800);
+        //getContentPane().add(panel, "Center");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Player Move");
         setSize(800,600);

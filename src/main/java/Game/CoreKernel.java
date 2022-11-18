@@ -15,7 +15,6 @@ import java.util.List;
 public class CoreKernel {
     public MyCharacter player;
     public InputTreatment inputTreatment;
-
     public Frame frame;
 
     public static int corridor = 32;
