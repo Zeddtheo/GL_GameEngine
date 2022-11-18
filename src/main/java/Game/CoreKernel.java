@@ -17,29 +17,31 @@ public class CoreKernel {
     public InputTreatment inputTreatment;
 
     public Frame frame;
+
+    public static int corridor = 32;
     public CoreKernel() {
         init();
     }
 
-    public List<Entity> entities; // liste des entités dans la zone de jeu
-    public List<MovableEntity> movableEntities; //  liste des entités qui bougent
-    public List<Entity> testWalls; // liste des murs ou des obstacles
+    public List<Entity> entities = new ArrayList<>(); // liste des entités dans la zone de jeu
+    public List<MovableEntity> movableEntities = new ArrayList<>(); //  liste des entités qui bougent
+    public List<Entity> testWalls = new ArrayList<>(); // liste des murs ou des obstacles
 
     void init() {
         // il suffit d'ajouter des objets dans les listes ci dessus pour ses affichages et aussi ses mouvements
-        player = new MyCharacter(new HitBox(new Position(30, 30), 50, 50));
+        player = new MyCharacter(new HitBox(new Position(32, 32), 32, 32));
         movableEntities.add(player);
 
         inputTreatment = new InputTreatment(new Keyboard());
         entities = new ArrayList<>();
         testWalls = new ArrayList<>();
         entities.add(player);
-        Wall wall = new Wall(new HitBox(new Position(300, 200), 50, 50));
+        /*Wall wall = new Wall(new HitBox(new Position(300, 200), 50, 50));
         Wall wall1 = new Wall(new HitBox(new Position(100, 100), 25, 100));
         entities.add(wall);
         entities.add(wall1);
         testWalls.add(wall);
-        testWalls.add(wall1);
+        testWalls.add(wall1);*/
         frame = new Frame(this);
     };
     /**
@@ -55,12 +57,13 @@ public class CoreKernel {
             //récupération des inputs
             player.setVitesse(inputTreatment.getInput());
 
-            //analyse du jeu pour voir si les mouvement on eu des consequences
+            //analyse du jeu pour voir si les mouvements ont eux des consequences
             //application des mouvements sur les objets
             for (MovableEntity movables : movableEntities) {
-                PhysicEngine.move(movables, testWalls);
+                if (!PhysicEngine.move(movables, testWalls)){ //si le mouvement n'a pas pu etre fait
+                    //TODO : arrêt du jeu
+                }
             }
-
 
             frame.refresh();
 

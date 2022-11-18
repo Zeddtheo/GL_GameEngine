@@ -14,7 +14,7 @@ public class Frame extends JFrame {
     public Frame(CoreKernel coreKernel){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Player Move");
-        setSize(400,400);
+        setSize(800,600);
         setResizable(false);
         this.coreKernel = coreKernel;
         init();

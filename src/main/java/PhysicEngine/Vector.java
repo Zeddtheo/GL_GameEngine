@@ -18,5 +18,13 @@ public class Vector {
         return Vy;
     }
 
+    public boolean isOposite(Vector vector){
+        return getVx() + vector.getVx() == 0 && getVy() + vector.getVy() == 0;
+    }
+
+    public boolean isOnAbssice(){
+        return Vx != 0;
+    }
+
 
 }

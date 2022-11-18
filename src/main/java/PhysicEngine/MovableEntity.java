@@ -1,5 +1,6 @@
 package PhysicEngine;
 
+import Game.CoreKernel;
 import InputEngine.Input;
 import Interface.MovableObject;
 
@@ -11,8 +12,8 @@ public abstract class MovableEntity extends Entity implements MovableObject {
 
     public MovableEntity(HitBox hitBox) {
         super(hitBox);
-        vitesse = 3;
-        this.V = new Vector(0,0);
+        vitesse = 2;
+        this.V = new Vector(1,0);
     }
 
     public void setCoordinate(Position position){
@@ -28,30 +29,79 @@ public abstract class MovableEntity extends Entity implements MovableObject {
     }
 
     public void setVitesse(boolean goUp, boolean goDown, boolean goRight, boolean goLeft ){
+        //si les directions demandées sont opposées
         if ((goUp && goDown) || (goLeft && goRight)) return;
 
+        int count = 0;
         int x = 0, y = 0;
         if (goUp){
             y-=1;
+             count++;
         }
         if (goDown){
             y+=1;
+            count++;
         }
         if (goLeft){
-            x-=1;
+            x -= 1;
+            count++;
         }
+
         if (goRight){
             x+=1;
+            count++;
         }
 
-        double l = Math.sqrt((double) x * x + y * y);
-        int x1 = (int) ((double) vitesse * x / l);
-        int y1 = (int) ((double) vitesse * y / l);
-        V = new Vector(x1, y1);
+        //si pas de modif on garde la meme vitesse
+        if (count == 0){
+            return;
+        }
+
+        int x1 = (int) ((double) vitesse * x );
+        int y1 = (int) ((double) vitesse * y );
+        Vector newVector = new Vector(x1, y1);
+
+        //si le vecteur est l'opposé de celui deja existant alors on ne fait rien
+        if (V.isOposite(newVector)) return;
+
+
+        if(V.isOnAbssice() && !newVector.isOnAbssice() && super.getPos().getPosX() % CoreKernel.corridor != 0){
+            return;
+        }
+
+        if(!V.isOnAbssice() && newVector.isOnAbssice() && super.getPos().getPosY() % CoreKernel.corridor != 0){
+            return;
+        }
+
+        //si il y avait qu'une direction demandé
+        if (count == 1){
+            V = newVector;
+            return;
+        }
+
+        //sinon on prend
+        if(V.getVx() == newVector.getVx()){
+            V = new Vector(V.getVx(), 0);
+        }
+        if(V.getVy() == newVector.getVy()){
+            V = new Vector(0, V.getVy());
+        }
     }
 
+    /**
+     * On regarde si on peut faire changer de direction le serpent
+     * @return oui ou on
+     */
+    public boolean canChangeForx(){
+        return getCoordinate().getPosX() % CoreKernel.corridor == 0;
+    }
+
+    public boolean canChangeFory(){
+        return getCoordinate().getPosY() % CoreKernel.corridor == 0;
+    }
+
+
     public void applyMovement() {
-        //coordinate = coordinate + vitesse;
         long vx = V.getVx();
         long vy = V.getVy();
         int x = (int) hitBox.getCorner().getPosX();
@@ -72,6 +122,10 @@ public abstract class MovableEntity extends Entity implements MovableObject {
     @Override
     public long getSpeed() {
         return vitesse;
+    }
+
+    public Vector getV(){
+        return V;
     }
 
     @Override
