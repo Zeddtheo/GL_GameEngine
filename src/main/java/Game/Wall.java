@@ -7,8 +7,8 @@ import javax.swing.*;
 
 public class Wall extends Entity {
 
-    public Wall(HitBox hitBox) {
-        super(hitBox);
+    public Wall(int x, int y, int width, int height) {
+        super(x, y, width, height);
     }
 
     @Override

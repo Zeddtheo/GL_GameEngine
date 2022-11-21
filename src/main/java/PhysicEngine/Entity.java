@@ -11,8 +11,8 @@ public abstract class Entity implements PhysicalObject, GraphicalObject {
     protected HitBox hitBox;
     protected ImageIcon image;
 
-    protected Entity(HitBox hitBox) {
-        this.hitBox = hitBox;
+    protected Entity(int x, int y, int width, int height) {
+        this.hitBox = new HitBox(x, y, width, height);
     }
 
     @Override
@@ -48,5 +48,10 @@ public abstract class Entity implements PhysicalObject, GraphicalObject {
     @Override
     public ImageIcon getImage() {
         return image;
+    }
+
+    @Override
+    public String toString() {
+        return getPos().toString();
     }
 }

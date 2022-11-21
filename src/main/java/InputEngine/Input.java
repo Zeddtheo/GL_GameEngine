@@ -3,7 +3,7 @@ package InputEngine;
 import java.awt.*;
 
 public abstract class Input extends Frame {
-    private boolean goRight;
+    public boolean goRight;
     private boolean goUp;
     private boolean goLeft;
     private boolean goDown;
@@ -32,19 +32,30 @@ public abstract class Input extends Frame {
     }
 
     protected void setGoRight(boolean goRight) {
+        clear();
         this.goRight = goRight;
     }
 
     protected void setGoUp(boolean goUp) {
+        clear();
         this.goUp = goUp;
     }
 
     protected void setGoLeft(boolean goLeft) {
+        clear();
         this.goLeft = goLeft;
     }
 
     protected void setGoDown(boolean goDown) {
+        clear();
         this.goDown = goDown;
+    }
+
+    private void clear() {
+        this.goDown = false;
+        this.goUp = false;
+        this.goLeft = false;
+        this.goRight = false;
     }
 
     @Override

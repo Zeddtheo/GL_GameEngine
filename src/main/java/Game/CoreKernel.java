@@ -9,10 +9,11 @@ import PhysicEngine.MovableEntity;
 import PhysicEngine.HitBox;
 import PhysicEngine.Position;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CoreKernel {
+    public boolean playing = true;
+
     public MyCharacter player;
     public InputTreatment inputTreatment;
 
@@ -25,22 +26,25 @@ public class CoreKernel {
     public List<MovableEntity> movableEntities; //  liste des entités qui bougent
     public List<Entity> testWalls; // liste des murs ou des obstacles
 
-    void init() {
+    public void init() {
         // il suffit d'ajouter des objets dans les listes ci dessus pour ses affichages et aussi ses mouvements
-        player = new MyCharacter(new HitBox(new Position(30, 30), 50, 50));
-        movableEntities.add(player);
-
-        inputTreatment = new InputTreatment(new Keyboard());
+        frame = new Frame(this);
+        movableEntities = new ArrayList<>();
         entities = new ArrayList<>();
         testWalls = new ArrayList<>();
+
+        inputTreatment = new InputTreatment(new Keyboard(this));
+
+        player = new MyCharacter(new HitBox(new Position(30, 30), 50, 50));
+        movableEntities.add(player);
         entities.add(player);
-        Wall wall = new Wall(new HitBox(new Position(300, 200), 50, 50));
-        Wall wall1 = new Wall(new HitBox(new Position(100, 100), 25, 100));
+        Wall wall = new Wall(300, 200, 50, 50);
+        Wall wall1 = new Wall(100, 100, 25, 100);
         entities.add(wall);
         entities.add(wall1);
         testWalls.add(wall);
         testWalls.add(wall1);
-        frame = new Frame(this);
+        frame.init();
     };
     /**
      * La boucle a une fréquence qui est de 60hz
@@ -51,16 +55,7 @@ public class CoreKernel {
         while (true){
             long start = System.currentTimeMillis();
 
-
-            //récupération des inputs
-            player.setVitesse(inputTreatment.getInput());
-
-            //analyse du jeu pour voir si les mouvement on eu des consequences
-            //application des mouvements sur les objets
-            for (MovableEntity movables : movableEntities) {
-                PhysicEngine.move(movables, testWalls);
-            }
-
+            extracted();
 
             frame.refresh();
 
@@ -69,6 +64,17 @@ public class CoreKernel {
                 Thread.sleep(16 - (end-start));
             }
 
+        }
+    }
+
+    public void extracted() {
+        //récupération des inputs
+        player.setVitesse(inputTreatment.getInput());
+
+        //analyse du jeu pour voir si les mouvement on eu des consequences
+        //application des mouvements sur les objets
+        for (MovableEntity movables : movableEntities) {
+            PhysicEngine.move(movables, testWalls);
         }
     }
 }

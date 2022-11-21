@@ -7,13 +7,15 @@ import PhysicEngine.Entity;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Screen extends JPanel {
 
     CoreKernel coreKernel;
 
-    List<Element> elements = new ArrayList<>();
+    public List<Element> elements = new ArrayList<>();
     public Screen(Keyboard keyboard, CoreKernel coreKernel){
 
         for (Entity entity : coreKernel.entities) {
@@ -31,17 +33,12 @@ public class Screen extends JPanel {
 
     }
 
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(getGraphics());
-        //player.paintComponent(getGraphics());
-    }
-
     public void refresh(CoreKernel coreKernel){
         for (Element element : elements) {
             element.setBounds(element.entity.collision());
-            element.repaint();
         }
+        getGraphics().drawLine(400, 0, 400, 400);
+        getGraphics().drawLine(0, 400, 400, 400);
 
     }
 

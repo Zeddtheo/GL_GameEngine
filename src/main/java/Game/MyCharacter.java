@@ -9,7 +9,10 @@ public class MyCharacter extends MovableEntity {
     // change class name to "Pacman" or smth
 
     public MyCharacter(HitBox hitBox) {
-        super(hitBox);
+        super((int) hitBox.getCorner().getPosX(),
+                (int) hitBox.getCorner().getPosY(),
+                hitBox.getWidth(),
+                hitBox.getHeight());
         image = new ImageIcon("Player.png");
     }
 

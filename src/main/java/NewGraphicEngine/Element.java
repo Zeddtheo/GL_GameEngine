@@ -1,5 +1,7 @@
 package NewGraphicEngine;
 
+import Game.Food;
+import Game.Head;
 import PhysicEngine.Entity;
 
 import javax.swing.*;
@@ -19,7 +21,13 @@ public class Element extends JPanel {
         super.paintComponent(g);
         setBounds(entity.collision());
         if (image == null) {
-            g.setColor(Color.GREEN);
+            if (entity instanceof Food) {
+                g.setColor(Color.RED);
+            }
+            else if (entity instanceof Head) {
+                g.setColor(Color.YELLOW);
+            }
+            else g.setColor(Color.GREEN);
             g.fillRect(0, 0, getWidth(), getHeight());
         }
         else {
@@ -29,5 +37,10 @@ public class Element extends JPanel {
                     0,
                     null);
         }
+    }
+
+    @Override
+    public String toString() {
+        return entity.toString();
     }
 }

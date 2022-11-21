@@ -8,29 +8,30 @@ import java.awt.*;
 
 public class Frame extends JFrame {
 
-    Screen screen;
+    public Screen screen;
 
     CoreKernel coreKernel;
     public Frame(CoreKernel coreKernel){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Player Move");
-        setSize(400,400);
+        setSize(400,430);
         setResizable(false);
         this.coreKernel = coreKernel;
-        init();
     }
 
     public void init(){
 
-        setLayout(new GridLayout(1,1,0,0));
+        // setLayout(new GridLayout(1,1,0,0));
+        setLayout(new BorderLayout());
 
         screen = new Screen((Keyboard) coreKernel.inputTreatment.getInput(), coreKernel);
+
 
         add(screen);
 
         setVisible(true);
 
-        screen.paintComponent(getGraphics());
+        // screen.paintComponent(getGraphics());
     }
 
     public void refresh(){

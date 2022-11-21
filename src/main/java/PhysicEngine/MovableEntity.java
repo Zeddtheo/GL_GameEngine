@@ -6,12 +6,12 @@ import Interface.MovableObject;
 import java.awt.*;
 
 public abstract class MovableEntity extends Entity implements MovableObject {
-    private Vector V;
+    protected Vector V;
     protected long vitesse;
 
-    public MovableEntity(HitBox hitBox) {
-        super(hitBox);
-        vitesse = 3;
+    public MovableEntity(int x, int y, int width, int height) {
+        super(x, y, width, height);
+        vitesse = 5;
         this.V = new Vector(0,0);
     }
 

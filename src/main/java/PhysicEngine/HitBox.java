@@ -21,6 +21,10 @@ public class HitBox {
         this.height = height;
     }
 
+    public HitBox(int x, int y, int width, int height) {
+        this(new Position(x, y), width, height);
+    }
+
     private void setCornerLeft(Position position){
         corner = position;
     }
