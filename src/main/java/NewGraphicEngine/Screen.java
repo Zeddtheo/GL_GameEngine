@@ -1,6 +1,7 @@
 package NewGraphicEngine;
 
 import Game.CoreKernel;
+import GraphicEngine.Element;
 import InputEngine.Keyboard;
 import PhysicEngine.Entity;
 

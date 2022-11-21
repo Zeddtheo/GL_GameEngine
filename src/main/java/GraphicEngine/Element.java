@@ -10,7 +10,7 @@ import java.awt.*;
 public class Element extends JPanel {
 
     ImageIcon image;
-    Entity entity;
+    public Entity entity;
     public Element(Entity entity){
         this.entity = entity;
         this.image = entity.getImage();

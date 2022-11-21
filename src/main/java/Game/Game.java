@@ -1,8 +1,8 @@
 package Game;
 
+import GraphicEngine.Element;
 import InputEngine.InputTreatment;
 import InputEngine.Keyboard;
-import NewGraphicEngine.Element;
 import NewGraphicEngine.Frame;
 import PhysicEngine.Entity;
 import PhysicEngine.PhysicEngine;
