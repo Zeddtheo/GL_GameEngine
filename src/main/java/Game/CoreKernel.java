@@ -75,16 +75,18 @@ public class CoreKernel {
         walls.add(wall);
         walls.add(wall1);
         frame.init();
-    };
+    }
 
     /**
-     * The frequences of this loop is 60hz
+     * The frequencies of this loop is 60hz
      *
      * @throws InterruptedException for the sleep
      */
+    @SuppressWarnings({"InfiniteLoopStatement", "BusyWait"})
+
     public void execute() throws InterruptedException {
 
-        while (true){
+        for (;;){
             long start = System.currentTimeMillis();
 
             extracted();
@@ -95,7 +97,6 @@ public class CoreKernel {
             if (end-start < 16){
                 Thread.sleep(16 - (end-start));
             }
-
         }
     }
 

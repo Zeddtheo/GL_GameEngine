@@ -1,7 +1,5 @@
 package InputEngine;
 
-import PhysicEngine.Vector;
-
 /**
  * The type Input treatment.
  */
@@ -22,7 +20,7 @@ public class InputTreatment {
     }
 
     /**
-     * Get input input.
+     * Get input.
      *
      * @return the input
      */

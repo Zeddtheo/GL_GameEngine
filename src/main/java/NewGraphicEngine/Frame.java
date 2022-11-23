@@ -28,7 +28,7 @@ public class Frame extends JFrame {
      */
     public Frame(CoreKernel coreKernel){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Player Move");
+        setTitle("Snake");
         setSize(400,430);
         setResizable(false);
         this.coreKernel = coreKernel;
@@ -52,7 +52,7 @@ public class Frame extends JFrame {
      * Refresh.
      */
     public void refresh(){
-        screen.refresh(coreKernel);
+        screen.refresh();
     }
 
 }

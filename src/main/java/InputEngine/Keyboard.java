@@ -29,33 +29,33 @@ public class Keyboard extends Input implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch(e.getKeyCode()) {
-            case KeyEvent.VK_UP:
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP -> {
                 if (isGoDown()) return;
                 super.setGoUp(true);
-                break;
-            case KeyEvent.VK_DOWN:
+            }
+            case KeyEvent.VK_DOWN -> {
                 if (isGoUp()) return;
                 super.setGoDown(true);
-                break;
-            case KeyEvent.VK_LEFT:
+            }
+            case KeyEvent.VK_LEFT -> {
                 if (isGoRight()) return;
                 super.setGoLeft(true);
-                break;
-            case KeyEvent.VK_RIGHT:
+            }
+            case KeyEvent.VK_RIGHT -> {
                 if (isGoLeft()) return;
                 super.setGoRight(true);
-                break;
-            case KeyEvent.VK_R:
+            }
+            case KeyEvent.VK_R -> {
                 game.init();
                 game.playing = true;
-                break;
+            }
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-//        switch(e.getKeyCode()) {
+//       switch(e.getKeyCode()) {
 //            case KeyEvent.VK_UP:
 //                super.setGoUp(false);
 //                break;

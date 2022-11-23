@@ -1,7 +1,6 @@
 package Game;
 
 import PhysicEngine.Entity;
-import PhysicEngine.HitBox;
 
 import javax.swing.*;
 

@@ -49,9 +49,8 @@ public class Screen extends JPanel {
     /**
      * Refresh.
      *
-     * @param coreKernel the core kernel
      */
-    public void refresh(CoreKernel coreKernel){
+    public void refresh(){
         for (Element element : elements) {
             element.setBounds(element.entity.collision());
         }
