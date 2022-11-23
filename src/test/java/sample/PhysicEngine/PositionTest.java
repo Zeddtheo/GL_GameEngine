@@ -1,6 +1,5 @@
 package sample.PhysicEngine;
-
-import GraphicEngine.PhysicEngine.Position;
+import PhysicEngine.Position;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

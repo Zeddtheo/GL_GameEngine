@@ -71,7 +71,7 @@ public class CoreKernel {
         //récupération des inputs
         player.setVitesse(inputTreatment.getInput());
 
-        //analyse du jeu pour voir si les mouvement on eu des consequences
+        //analyse du jeu pour voir si les mouvements ont eu des consequences
         //application des mouvements sur les objets
         for (MovableEntity movables : movableEntities) {
             PhysicEngine.move(movables, testWalls);
