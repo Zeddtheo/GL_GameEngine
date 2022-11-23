@@ -1,7 +1,6 @@
 package src;
 
 import Game.CoreKernel;
-import Game.Game;
 
 /**
  * The type Main.
@@ -14,7 +13,7 @@ public class Main {
      * @throws InterruptedException the interrupted exception
      */
     public static void main(String[] args) throws InterruptedException {
-        CoreKernel coreKernel = new Game();
+        CoreKernel coreKernel = new CoreKernel();
         coreKernel.execute();
     }
 }

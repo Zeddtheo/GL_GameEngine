@@ -1,13 +1,13 @@
 package sample.PhysicEngine;
 
-import Game.Game;
+import Game.GameScreen;
 import Game.Head;
 import PhysicEngine.Position;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class PhysicEngineTest extends Game {
+public class PhysicEngineTest extends GameScreen {
 
     @Test
     void collision() {
