@@ -10,8 +10,20 @@ public abstract class Input extends Frame {
      * The Go right.
      */
     public boolean goRight;
+
+    /**
+     * The Go up.
+     */
     private boolean goUp;
+
+    /**
+     * The Go left.
+     */
     private boolean goLeft;
+
+    /**
+     * The Go down.
+     */
     private boolean goDown;
 
     /**

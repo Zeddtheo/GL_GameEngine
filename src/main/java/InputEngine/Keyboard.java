@@ -10,6 +10,9 @@ import java.awt.event.KeyListener;
  */
 public class Keyboard extends Input implements KeyListener {
 
+    /**
+     * The game.
+     */
     private final CoreKernel game;
 
     /**

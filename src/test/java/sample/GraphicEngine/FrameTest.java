@@ -12,7 +12,7 @@ public class FrameTest {
     public void FrameNameTest(){
         CoreKernel coreKernel = new CoreKernel();
         Frame frame = new Frame(coreKernel);
-        assertTrue(frame.getTitle().contains("Player Move"));
+        assertTrue(frame.getTitle().contains("Snake"));
 
     }
 

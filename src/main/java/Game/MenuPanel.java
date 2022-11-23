@@ -9,6 +9,9 @@ import java.awt.event.KeyListener;
  * The type Menu panel.
  */
 public class MenuPanel extends JPanel implements KeyListener {
+    /**
+     * The width and height
+     */
     private  int width, height;
 
     /**
@@ -24,9 +27,25 @@ public class MenuPanel extends JPanel implements KeyListener {
         this.setFocusable(true);
         this.addKeyListener(this);
     }
+
+    /**
+     * All buttons menue.
+     */
     private String[] menus = new String[]{"START","SETTINGS","ABOUT US","EXIT"};
+
+    /**
+     * The focus Index.
+     */
     private int focusIndex;
+
+    /**
+     * The menu x.
+     */
     private int menu_x = 260;
+
+    /**
+     * The position of menu's elements.
+     */
     private int[] menu_ys = new int[]{80,110,140,170};
     public void paintComponent(Graphics g){
         super.paintComponent(g);
