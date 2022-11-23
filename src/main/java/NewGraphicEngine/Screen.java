@@ -1,15 +1,11 @@
 package NewGraphicEngine;
 
 import Game.CoreKernel;
-import GraphicEngine.Element;
 import InputEngine.Keyboard;
 import PhysicEngine.Entity;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Screen extends JPanel {

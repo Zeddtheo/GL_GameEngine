@@ -1,4 +1,4 @@
-package GraphicEngine;
+package NewGraphicEngine;
 
 import Game.Food;
 import Game.Head;

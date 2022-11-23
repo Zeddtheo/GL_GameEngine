@@ -1,6 +1,6 @@
 package Game;
 
-import GraphicEngine.Element;
+import NewGraphicEngine.Element;
 import InputEngine.InputTreatment;
 import InputEngine.Keyboard;
 import NewGraphicEngine.Frame;
