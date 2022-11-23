@@ -11,27 +11,57 @@ import PhysicEngine.Position;
 
 import java.util.*;
 
+/**
+ * The type Core kernel.
+ */
 public class CoreKernel {
+    /**
+     * The Playing.
+     */
     public boolean playing = true;
 
+    /**
+     * The Player.
+     */
     public MyCharacter player;
+    /**
+     * The Input treatment.
+     */
     public InputTreatment inputTreatment;
 
+    /**
+     * The Frame for graphic engine.
+     */
     public Frame frame;
+
+    /**
+     * Instantiates a new Core kernel.
+     */
     public CoreKernel() {
         init();
     }
 
-    public List<Entity> entities; // liste des entités dans la zone de jeu
-    public List<MovableEntity> movableEntities; //  liste des entités qui bougent
-    public List<Entity> testWalls; // liste des murs ou des obstacles
+    /**
+     * The Entities.
+     */
+    public List<Entity> entities;
+    /**
+     * The Movable entities.
+     */
+    public List<MovableEntity> movableEntities;
+    /**
+     * The walls.
+     */
+    public List<Entity> walls;
 
+    /**
+     * Init the game.
+     */
     public void init() {
-        // il suffit d'ajouter des objets dans les listes ci dessus pour ses affichages et aussi ses mouvements
         frame = new Frame(this);
         movableEntities = new ArrayList<>();
         entities = new ArrayList<>();
-        testWalls = new ArrayList<>();
+        walls = new ArrayList<>();
 
         inputTreatment = new InputTreatment(new Keyboard(this));
 
@@ -42,13 +72,15 @@ public class CoreKernel {
         Wall wall1 = new Wall(100, 100, 25, 100);
         entities.add(wall);
         entities.add(wall1);
-        testWalls.add(wall);
-        testWalls.add(wall1);
+        walls.add(wall);
+        walls.add(wall1);
         frame.init();
     };
+
     /**
-     * La boucle a une fréquence qui est de 60hz
-     * @throws InterruptedException pour gerer le sleep
+     * The frequences of this loop is 60hz
+     *
+     * @throws InterruptedException for the sleep
      */
     public void execute() throws InterruptedException {
 
@@ -67,14 +99,15 @@ public class CoreKernel {
         }
     }
 
+    /**
+     * Extracted.
+     */
     public void extracted() {
-        //récupération des inputs
+        //get player input
         player.setVitesse(inputTreatment.getInput());
 
-        //analyse du jeu pour voir si les mouvements ont eu des consequences
-        //application des mouvements sur les objets
         for (MovableEntity movables : movableEntities) {
-            PhysicEngine.move(movables, testWalls);
+            PhysicEngine.move(movables, walls);
         }
     }
 }

@@ -5,8 +5,18 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * The type Menu panel.
+ */
 public class MenuPanel extends JPanel implements KeyListener {
     private  int width, height;
+
+    /**
+     * Instantiates a new Menu panel.
+     *
+     * @param width  the width
+     * @param height the height
+     */
     public MenuPanel(int width, int height){
         this.height = height;
         this.width = width;

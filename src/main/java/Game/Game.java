@@ -14,14 +14,35 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
+/**
+ * The type Game.
+ */
 public class Game extends CoreKernel {
+    /**
+     * The constant GRID_HEIGHT.
+     */
     public static int GRID_HEIGHT = 20;
+    /**
+     * The constant GRID_WIDTH.
+     */
     public static int GRID_WIDTH = 20;
+    /**
+     * The constant CELL_HEIGHT.
+     */
     public static int CELL_HEIGHT = 20;
+    /**
+     * The constant CELL_WIDTH.
+     */
     public static int CELL_WIDTH = 20;
 
+    /**
+     * The Snake.
+     */
     public Snake snake;
 
+    /**
+     * The Food.
+     */
     public Food food;
 
     @Override
@@ -29,7 +50,7 @@ public class Game extends CoreKernel {
         frame = new Frame(this);
         movableEntities = new ArrayList<>();
         entities = new ArrayList<>();
-        testWalls = new ArrayList<>();
+        walls = new ArrayList<>();
 
         inputTreatment = new InputTreatment(new Keyboard(this));
         inputTreatment.getInput().goRight = true;
@@ -86,6 +107,9 @@ public class Game extends CoreKernel {
         }
     }
 
+    /**
+     * Generate food.
+     */
     void generateFood() {
         int x, y;
         boolean found;

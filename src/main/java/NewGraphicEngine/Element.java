@@ -7,10 +7,25 @@ import PhysicEngine.Entity;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The type Element.
+ */
 public class Element extends JPanel {
 
+    /**
+     * The Image.
+     */
     ImageIcon image;
+    /**
+     * The Entity.
+     */
     public Entity entity;
+
+    /**
+     * Instantiates a new Element.
+     *
+     * @param entity the entity
+     */
     public Element(Entity entity){
         this.entity = entity;
         this.image = entity.getImage();

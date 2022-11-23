@@ -5,10 +5,18 @@ import Game.CoreKernel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * The type Keyboard.
+ */
 public class Keyboard extends Input implements KeyListener {
 
     private final CoreKernel game;
 
+    /**
+     * Instantiates a new Keyboard.
+     *
+     * @param game the game
+     */
     public Keyboard(CoreKernel game) {
         this.game = game;
     }

@@ -5,9 +5,16 @@ import PhysicEngine.MovableEntity;
 
 import javax.swing.*;
 
+/**
+ * The type My character.
+ */
 public class MyCharacter extends MovableEntity {
-    // change class name to "Pacman" or smth
 
+    /**
+     * Instantiates a new My character.
+     *
+     * @param hitBox the hit box
+     */
     public MyCharacter(HitBox hitBox) {
         super((int) hitBox.getCorner().getPosX(),
                 (int) hitBox.getCorner().getPosY(),

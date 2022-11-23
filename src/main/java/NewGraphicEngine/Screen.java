@@ -8,11 +8,27 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Screen.
+ */
 public class Screen extends JPanel {
 
+    /**
+     * The Core kernel.
+     */
     CoreKernel coreKernel;
 
+    /**
+     * The Elements.
+     */
     public List<Element> elements = new ArrayList<>();
+
+    /**
+     * Instantiates a new Screen.
+     *
+     * @param keyboard   the keyboard
+     * @param coreKernel the core kernel
+     */
     public Screen(Keyboard keyboard, CoreKernel coreKernel){
 
         for (Entity entity : coreKernel.entities) {
@@ -30,6 +46,11 @@ public class Screen extends JPanel {
 
     }
 
+    /**
+     * Refresh.
+     *
+     * @param coreKernel the core kernel
+     */
     public void refresh(CoreKernel coreKernel){
         for (Element element : elements) {
             element.setBounds(element.entity.collision());

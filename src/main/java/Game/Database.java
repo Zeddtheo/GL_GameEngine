@@ -5,10 +5,7 @@ import java.util.Vector;
 
 /***
  * @author Jinhua
- * @version 1.0
- * This class is for saving the current information(score+username),
- * and creating a scoreboard to display all-time high scores,
- * and saving game progress.
+ * @version 1.0  This class is for saving the current information(score+username), and creating a scoreboard to display all-time high scores, and saving game progress.
  */
 public class Database {
     private static String playerName;
@@ -19,10 +16,20 @@ public class Database {
     private static String dataFile = "src/record.txt";
     private static Vector<Node> nodes = new Vector<>();
 
+    /**
+     * Gets player score.
+     *
+     * @return the player score
+     */
     public static int getPlayerScore() {
         return playerScore;
     }
 
+    /**
+     * Sets player score.
+     *
+     * @param playerScore the player score
+     */
     public static void setPlayerScore(int playerScore) {
         Database.playerScore = playerScore;
     }
@@ -36,7 +43,8 @@ public class Database {
 
     /**
      * Save player's score and position and NPC's position when exits.
-     * @throws IOException
+     *
+     * @throws IOException the io exception
      */
     public static void saveData() throws IOException {
         try{
@@ -54,8 +62,8 @@ public class Database {
     /**
      * Reload enemy information when game starts.
      *
-     * @return
-     * @throws IOException
+     * @return vector
+     * @throws IOException the io exception
      */
     public static Vector<Node> reload() throws IOException {
         try {

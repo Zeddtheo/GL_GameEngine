@@ -2,12 +2,21 @@ package InputEngine;
 
 import java.awt.*;
 
+/**
+ * The type Input.
+ */
 public abstract class Input extends Frame {
+    /**
+     * The Go right.
+     */
     public boolean goRight;
     private boolean goUp;
     private boolean goLeft;
     private boolean goDown;
 
+    /**
+     * Instantiates a new Input.
+     */
     public Input() {
         this.goUp = false;
         this.goRight = false;
@@ -15,37 +24,77 @@ public abstract class Input extends Frame {
         this.goDown = false;
     }
 
+    /**
+     * Is go right boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGoRight() {
         return goRight;
     }
 
+    /**
+     * Is go up boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGoUp() {
         return goUp;
     }
 
+    /**
+     * Is go left boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGoLeft() {
         return goLeft;
     }
 
+    /**
+     * Is go down boolean.
+     *
+     * @return the boolean
+     */
     public boolean isGoDown() {
         return goDown;
     }
 
+    /**
+     * Sets go right.
+     *
+     * @param goRight the go right
+     */
     protected void setGoRight(boolean goRight) {
         clear();
         this.goRight = goRight;
     }
 
+    /**
+     * Sets go up.
+     *
+     * @param goUp the go up
+     */
     protected void setGoUp(boolean goUp) {
         clear();
         this.goUp = goUp;
     }
 
+    /**
+     * Sets go left.
+     *
+     * @param goLeft the go left
+     */
     protected void setGoLeft(boolean goLeft) {
         clear();
         this.goLeft = goLeft;
     }
 
+    /**
+     * Sets go down.
+     *
+     * @param goDown the go down
+     */
     protected void setGoDown(boolean goDown) {
         clear();
         this.goDown = goDown;
