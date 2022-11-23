@@ -5,110 +5,163 @@ import InputEngine.Keyboard;
 import NewGraphicEngine.Frame;
 import PhysicEngine.Entity;
 import PhysicEngine.PhysicEngine;
-import PhysicEngine.MovableEntity;
-import PhysicEngine.HitBox;
 import PhysicEngine.Position;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-/**
- * The type Core kernel.
- */
 public class CoreKernel {
-    /**
-     * The Playing.
-     */
+    public static int GRID_HEIGHT = 20;
+    public static int GRID_WIDTH = 20;
+    public static int CELL_HEIGHT = 20;
+    public static int CELL_WIDTH = 20;
+
     public boolean playing = true;
 
-    /**
-     * The Player.
-     */
-    public MyCharacter player;
-    /**
-     * The Input treatment.
-     */
+    public Snake snake;
+
+    public Food food;
+
+    public int score = 0;
+
+    public List<Element> elements = new ArrayList<>();
     public InputTreatment inputTreatment;
 
-    /**
-     * The Frame for graphic engine.
-     */
-    public Frame frame;
-
-    /**
-     * Instantiates a new Core kernel.
-     */
+    public Frame game;
     public CoreKernel() {
-        init();
-    }
-
-    /**
-     * The Entities.
-     */
-    public List<Entity> entities;
-    /**
-     * The Movable entities.
-     */
-    public List<MovableEntity> movableEntities;
-    /**
-     * The walls.
-     */
-    public List<Entity> walls;
-
-    /**
-     * Init the game.
-     */
-    public void init() {
-        frame = new Frame(this);
-        movableEntities = new ArrayList<>();
-        entities = new ArrayList<>();
-        walls = new ArrayList<>();
-
         inputTreatment = new InputTreatment(new Keyboard(this));
+        inputTreatment.getInput().goRight = true;
+        init();
+        game = new GameScreen(this);
+    }
 
-        player = new MyCharacter(new HitBox(new Position(30, 30), 50, 50));
-        movableEntities.add(player);
-        entities.add(player);
-        Wall wall = new Wall(300, 200, 50, 50);
-        Wall wall1 = new Wall(100, 100, 25, 100);
-        entities.add(wall);
-        entities.add(wall1);
-        walls.add(wall);
-        walls.add(wall1);
-        frame.init();
+    public void init() {
+        score = 0;
+        playing = true;
+        elements.clear();
+
+        LinkedList<Entity> body = new LinkedList<>();
+        Cell cell1 = new Cell(CELL_WIDTH * 2, CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+        Cell cell2 = new Cell(CELL_WIDTH, CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT);
+
+        body.addFirst(cell2);
+        body.addFirst(cell1);
+        this.snake = new Snake(CELL_WIDTH * 3, CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, CELL_WIDTH, CELL_HEIGHT, body);
+        cell1.setNext(snake.head);
+        cell1.setPrevious(cell2);
+        cell2.setNext(cell1);
+        cell2.setPrevious(snake.tail);
+
+        generateFood();
+        elements.add(new Element(this.snake.head));
+        elements.add(new Element(this.snake.tail));
+        for (Entity cell: snake.body) {
+            elements.add(new Element(cell));
+        }
+        elements.add(new Element(this.snake.head));
+        elements.add(new Element(food));
+    }
+
+    void generateFood() {
+        int x, y;
+        boolean found;
+        do {
+            found = true;
+            x = new Random().nextInt(GRID_WIDTH - 1) * CELL_WIDTH;
+            y = new Random().nextInt(GRID_HEIGHT - 1) * CELL_HEIGHT;
+            Rectangle rect = new Rectangle(x, y, CELL_WIDTH, CELL_HEIGHT);
+            if (food != null && food.collision().intersects(rect)) continue;
+
+            for (Element element : elements) {
+                if (element.entity.collision().intersects(rect)) {
+                    found = false;
+                    break;
+                }
+            }
+        } while (!found);
+
+        if (food == null) {
+            food = new Food(x, y, CELL_WIDTH, CELL_HEIGHT);
+        }
+        else {
+            food.setPos(new Position(x, y));
+        }
     }
 
     /**
-     * The frequencies of this loop is 60hz
-     *
-     * @throws InterruptedException for the sleep
+     * La boucle a une fréquence qui est de 60hz
+     * @throws InterruptedException pour gerer le sleep
      */
-    @SuppressWarnings({"InfiniteLoopStatement", "BusyWait"})
-
     public void execute() throws InterruptedException {
 
-        for (;;){
+        while (true){
             long start = System.currentTimeMillis();
 
             extracted();
 
-            frame.refresh();
+            game.refresh();
 
             long end = System.currentTimeMillis();
             if (end-start < 16){
                 Thread.sleep(16 - (end-start));
             }
+
         }
     }
 
-    /**
-     * Extracted.
-     */
     public void extracted() {
-        //get player input
-        player.setVitesse(inputTreatment.getInput());
+        if (playing) {
+            if (!new Rectangle(0, 0, GRID_WIDTH * CELL_WIDTH, GRID_HEIGHT * CELL_HEIGHT)
+                    .contains(snake.head.collision())) {
+                playing = false;
+                return;
+            }
+            if (
+                    snake.head.getCoordinate().getPosX() % CELL_WIDTH == 0 &&
+                            snake.head.getCoordinate().getPosY() % CELL_HEIGHT == 0
+            ) {
+                snake.head.setVitesse(inputTreatment.getInput());
+                if (snake.head.collision().contains(food.collision())) {
+                    score++;
+                    Cell cell = new Cell(food);
+                    Cell first = (Cell) snake.body.getFirst();
+                    cell.setPrevious(first);
+                    cell.setNext(snake.head);
+                    first.setNext(cell);
+                    snake.body.addFirst(cell);
+                    game.addElement(new Element(cell));
+                    generateFood();
+                } else {
+                    Cell last = (Cell) snake.body.removeLast();
+                    Cell first = (Cell) snake.body.getFirst();
 
-        for (MovableEntity movables : movableEntities) {
-            PhysicEngine.move(movables, walls);
+                    last.setNext(snake.head);
+                    last.setPrevious(first);
+                    first.setNext(last);
+                    last.setPos(snake.head.getPos());
+                    snake.body.addFirst(last);
+                    ((Cell) snake.body.getLast()).setPrevious(snake.tail);
+                }
+            }
+
+            List<Entity> list = new LinkedList<>(snake.body.subList(1, snake.body.size()));
+
+            if (PhysicEngine.move(snake.head, list)) {
+                PhysicEngine.move(snake.tail, new ArrayList<>());
+            } else {
+                playing = false;
+            }
         }
+        else if (((Keyboard) inputTreatment.getInput()).getRestart()){
+            restart();
+            playing = true;
+        }
+    }
+
+    private void restart() {
+        init();
+        game.init();
+        game.repaint();
     }
 }

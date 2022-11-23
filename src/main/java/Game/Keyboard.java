@@ -1,25 +1,15 @@
-package InputEngine;
+package Game;
 
-import Game.CoreKernel;
+import InputEngine.Input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-/**
- * The type Keyboard.
- */
 public class Keyboard extends Input implements KeyListener {
 
-    /**
-     * The game.
-     */
     private final CoreKernel game;
+    public boolean restart = false;
 
-    /**
-     * Instantiates a new Keyboard.
-     *
-     * @param game the game
-     */
     public Keyboard(CoreKernel game) {
         this.game = game;
     }
@@ -32,33 +22,34 @@ public class Keyboard extends Input implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_UP -> {
+        switch(e.getKeyCode()) {
+            case KeyEvent.VK_UP:
                 if (isGoDown()) return;
                 super.setGoUp(true);
-            }
-            case KeyEvent.VK_DOWN -> {
+                break;
+            case KeyEvent.VK_DOWN:
                 if (isGoUp()) return;
                 super.setGoDown(true);
-            }
-            case KeyEvent.VK_LEFT -> {
+                break;
+            case KeyEvent.VK_LEFT:
                 if (isGoRight()) return;
                 super.setGoLeft(true);
-            }
-            case KeyEvent.VK_RIGHT -> {
+                break;
+            case KeyEvent.VK_RIGHT:
                 if (isGoLeft()) return;
                 super.setGoRight(true);
-            }
-            case KeyEvent.VK_R -> {
-                game.init();
-                game.playing = true;
-            }
+                break;
+            case KeyEvent.VK_R:
+                restart = true;
+                game.playing = false;
+                super.setGoRight(true);
+                break;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-//       switch(e.getKeyCode()) {
+//        switch(e.getKeyCode()) {
 //            case KeyEvent.VK_UP:
 //                super.setGoUp(false);
 //                break;
@@ -72,5 +63,13 @@ public class Keyboard extends Input implements KeyListener {
 //                super.setGoRight(false);
 //                break;
 //        }
+    }
+
+    public boolean getRestart() {
+        if (restart) {
+            restart = false;
+            return true;
+        }
+        return false;
     }
 }
