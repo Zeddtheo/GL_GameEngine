@@ -1,7 +1,7 @@
 package sample.InputEngine;
 
 import Game.CoreKernel;
-import InputEngine.Keyboard;
+import Game.Keyboard;
 import org.junit.jupiter.api.Test;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

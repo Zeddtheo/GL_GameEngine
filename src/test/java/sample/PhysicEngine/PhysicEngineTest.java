@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class PhysicEngineTest extends GameScreen {
+public class PhysicEngineTest {
 
     @Test
     void collision() {
