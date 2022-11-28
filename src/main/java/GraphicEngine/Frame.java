@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public abstract class Frame extends JFrame {
 
+
     protected JPanel screen;
 
     public abstract void init();
