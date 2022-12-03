@@ -18,5 +18,7 @@ public abstract class Frame extends JFrame {
         screen.remove(element);
     }
 
-
+    public JPanel getScreen() {
+        return screen;
+    }
 }

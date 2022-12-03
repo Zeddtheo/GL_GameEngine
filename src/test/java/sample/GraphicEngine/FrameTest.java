@@ -6,13 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 public class FrameTest {
 
     @Test
     public void FrameNameTest(){
         CoreKernel coreKernel = new CoreKernel();
-
-
+        Frame frame = coreKernel.game;
+        assertTrue(frame.isActive());
+        assertTrue(frame.getScreen().isEnabled());
     }
-
 }
