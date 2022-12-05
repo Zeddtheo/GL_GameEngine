@@ -11,24 +11,64 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+/**
+ * The type Core kernel.
+ */
 public class CoreKernel {
+    /**
+     * The constant GRID_HEIGHT.
+     */
     public static int GRID_HEIGHT = 20;
+    /**
+     * The constant GRID_WIDTH.
+     */
     public static int GRID_WIDTH = 20;
+    /**
+     * The constant CELL_HEIGHT.
+     */
     public static int CELL_HEIGHT = 20;
+    /**
+     * The constant CELL_WIDTH.
+     */
     public static int CELL_WIDTH = 20;
 
+    /**
+     * The Playing.
+     */
     public boolean playing = true;
 
+    /**
+     * The Snake.
+     */
     public Snake snake;
 
+    /**
+     * The Food.
+     */
     public Food food;
 
+    /**
+     * The Score.
+     */
     public int score = 0;
 
+    /**
+     * The Elements.
+     */
     public List<Element> elements = new ArrayList<>();
+    /**
+     * The Input treatment.
+     */
     public InputTreatment inputTreatment;
 
+    /**
+     * The Game.
+     */
     public Frame game;
+
+    /**
+     * Instantiates a new Core kernel.
+     */
     public CoreKernel() {
         inputTreatment = new InputTreatment(new Keyboard(this));
         inputTreatment.getInput().goRight = true;
@@ -36,6 +76,9 @@ public class CoreKernel {
         game = new GameScreen(this);
     }
 
+    /**
+     * Init.
+     */
     public void init() {
         score = 0;
         playing = true;
@@ -63,6 +106,9 @@ public class CoreKernel {
         elements.add(new Element(food));
     }
 
+    /**
+     * Generate food.
+     */
     void generateFood() {
         int x, y;
         boolean found;
@@ -90,8 +136,8 @@ public class CoreKernel {
     }
 
     /**
-     * La boucle a une fréquence qui est de 60hz
-     * @throws InterruptedException pour gerer le sleep
+     * the loop's frequence is 60Hz
+     * @throws InterruptedException for sleep
      */
     public void execute() throws InterruptedException {
 
@@ -110,6 +156,9 @@ public class CoreKernel {
         }
     }
 
+    /**
+     * Extracted.
+     */
     public void extracted() {
         if (playing) {
             if (!new Rectangle(0, 0, GRID_WIDTH * CELL_WIDTH, GRID_HEIGHT * CELL_HEIGHT)

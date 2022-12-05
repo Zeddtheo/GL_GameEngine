@@ -1,4 +1,19 @@
 # Projet 
+Membre du groupe:   
+MARTINET Théo    
+OUADDAH Badr    
+CONG Viet    
+WANG Hua   
+MARTINEZ Gianni   
+
+# instructions de compilation pour lancer le jeu
+Utiliser openjdk version 18.0.2.1
+Double clique sur le fichier "Snake-1.0-SNAPSHOT.jar" se trouvant à la racine du projet
+
+# instruction de compilatioon des tests
+
+faire gradle test
+
 
 Modèle basique de projet gradle pour interface graphique avec `swing`.
 

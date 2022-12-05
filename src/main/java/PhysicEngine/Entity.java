@@ -8,10 +8,27 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
+/**
+ * The type Entity.
+ */
 public abstract class Entity implements PhysicalObject, GraphicalObject {
+    /**
+     * The Hit box.
+     */
     protected HitBox hitBox;
+    /**
+     * The Image.
+     */
     protected BufferedImage image;
 
+    /**
+     * Instantiates a new Entity.
+     *
+     * @param x      the x
+     * @param y      the y
+     * @param width  the width
+     * @param height the height
+     */
     protected Entity(int x, int y, int width, int height) {
         this.hitBox = new HitBox(x, y, width, height);
     }
@@ -47,6 +64,13 @@ public abstract class Entity implements PhysicalObject, GraphicalObject {
     }
 
 
+    /**
+     * Rotate buffered image.
+     *
+     * @param image  the image
+     * @param degree the degree
+     * @return the buffered image
+     */
     public BufferedImage rotate(BufferedImage image, int degree) {
         final double rads = Math.toRadians(degree);
         final double sin = Math.abs(Math.sin(rads));
@@ -63,6 +87,12 @@ public abstract class Entity implements PhysicalObject, GraphicalObject {
         return rotatedImage;
     }
 
+    /**
+     * Flip buffered image.
+     *
+     * @param image the image
+     * @return the buffered image
+     */
     public BufferedImage flip(BufferedImage image) {
         AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
         tx.translate(0, -image.getHeight(null));

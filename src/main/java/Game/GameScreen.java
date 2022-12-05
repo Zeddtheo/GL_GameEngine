@@ -7,11 +7,28 @@ import GraphicEngine.Frame;
 import javax.swing.*;
 import java.util.List;
 
+/**
+ * The type Game screen.
+ */
 public class GameScreen extends Frame {
+    /**
+     * The Core kernel.
+     */
     CoreKernel coreKernel;
+    /**
+     * The Elements.
+     */
     List<Element> elements;
+    /**
+     * The Score.
+     */
     JTextArea score;
 
+    /**
+     * Instantiates a new Game screen.
+     *
+     * @param coreKernel the core kernel
+     */
     public GameScreen(CoreKernel coreKernel) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Serpent");
@@ -61,7 +78,6 @@ public class GameScreen extends Frame {
             element.setBounds(element.entity.collision());
         }
         score.setText("score : " + coreKernel.score);
-        //repaint();
         screen.getGraphics().drawLine(0, 404, 400, 404);
     }
 }

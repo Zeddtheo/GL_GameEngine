@@ -8,9 +8,9 @@ import java.awt.*;
 public class HitBox {
 
     private Position corner;
-    private final int height; //hauteur
+    private final int height;
 
-    private final int width; //largeur
+    private final int width;
 
 
     /**
@@ -52,9 +52,9 @@ public class HitBox {
     }
 
     /**
-     * actualise la position du coin haut gauche de la hitbox
+     * reload the left corner position of the hit box
      *
-     * @param position la position du centre de l'objet
+     * @param position object's center position
      */
     public void refresh(Position position){
         setCornerLeft(position);

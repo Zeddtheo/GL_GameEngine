@@ -8,24 +8,59 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
+/**
+ * The type Movable entity.
+ */
 public abstract class MovableEntity extends Entity implements MovableObject {
+    /**
+     * The V.
+     */
     protected Vector V;
+    /**
+     * The Vitesse.
+     */
     protected long vitesse;
 
+    /**
+     * Instantiates a new Movable entity.
+     *
+     * @param x      the x
+     * @param y      the y
+     * @param width  the width
+     * @param height the height
+     */
     public MovableEntity(int x, int y, int width, int height) {
         super(x, y, width, height);
         vitesse = 4;
         this.V = new Vector(0,0);
     }
 
+    /**
+     * Set coordinate.
+     *
+     * @param position the position
+     */
     public void setCoordinate(Position position){
         hitBox.refresh(position);
     }
 
+    /**
+     * Gets coordinate.
+     *
+     * @return the coordinate
+     */
     public Position getCoordinate() {
         return hitBox.getCorner();
     }
 
+    /**
+     * Set vitesse.
+     *
+     * @param goUp    the go up
+     * @param goDown  the go down
+     * @param goRight the go right
+     * @param goLeft  the go left
+     */
     public void setVitesse(boolean goUp, boolean goDown, boolean goRight, boolean goLeft ){
         if ((goUp && goDown) || (goLeft && goRight)) return;
 
@@ -49,6 +84,9 @@ public abstract class MovableEntity extends Entity implements MovableObject {
         V = new Vector(x1, y1);
     }
 
+    /**
+     * Apply movement.
+     */
     public void applyMovement() {
         //coordinate = coordinate + vitesse;
         long vx = V.getVx();
@@ -59,6 +97,11 @@ public abstract class MovableEntity extends Entity implements MovableObject {
         setCoordinate(new Position(x + V.getVx(),y + V.getVy()));
     }
 
+    /**
+     * Sets vitesse.
+     *
+     * @param input the input
+     */
     public void setVitesse(Input input) {
         setVitesse(input.isGoUp(), input.isGoDown(), input.isGoRight(), input.isGoLeft());
     }

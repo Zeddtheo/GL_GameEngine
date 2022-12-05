@@ -10,12 +10,40 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * The type Tail.
+ */
 public class Tail extends MovableEntity {
+    /**
+     * The Snake.
+     */
     Snake snake;
+    /**
+     * The Tail up.
+     */
     BufferedImage tailUp;
+    /**
+     * The Tail left.
+     */
     BufferedImage tailLeft;
+    /**
+     * The Tail down.
+     */
     BufferedImage tailDown;
+    /**
+     * The Tail right.
+     */
     BufferedImage tailRight;
+
+    /**
+     * Instantiates a new Tail.
+     *
+     * @param x      the x
+     * @param y      the y
+     * @param width  the width
+     * @param height the height
+     * @param snake  the snake
+     */
     public Tail(int x, int y, int width, int height, Snake snake) {
         super(x, y, width, height);
         try {

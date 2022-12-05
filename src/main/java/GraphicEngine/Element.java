@@ -6,9 +6,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * The type Element.
+ */
 public class Element extends JPanel {
 
+    /**
+     * The Entity.
+     */
     public Entity entity;
+
+    /**
+     * Instantiates a new Element.
+     *
+     * @param entity the entity
+     */
     public Element(Entity entity){
         this.entity = entity;
         setBounds(entity.collision());
@@ -17,9 +29,7 @@ public class Element extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-//        System.out.println(entity);
-//        System.out.println(entity.getImage());
-//        System.out.println();
+
         BufferedImage image = entity.getImage();
         if (image == null) {
             g.setColor(Color.GREEN);

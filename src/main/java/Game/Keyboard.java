@@ -5,11 +5,25 @@ import InputEngine.Input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * The type Keyboard.
+ */
 public class Keyboard extends Input implements KeyListener {
 
+    /**
+     * The game
+     */
     private final CoreKernel game;
+    /**
+     * The Restart.
+     */
     public boolean restart = false;
 
+    /**
+     * Instantiates a new Keyboard.
+     *
+     * @param game the game
+     */
     public Keyboard(CoreKernel game) {
         this.game = game;
     }
@@ -65,6 +79,11 @@ public class Keyboard extends Input implements KeyListener {
 //        }
     }
 
+    /**
+     * Gets restart.
+     *
+     * @return the restart
+     */
     public boolean getRestart() {
         if (restart) {
             restart = false;
