@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
+ *
  * The type Food.
  */
 public class Food extends Entity {
